@@ -1,0 +1,45 @@
+#!/bin/bash
+echo "Adopted from https://www.the-analytics.club/python-project-structure-best-practices/"
+python -m venv venv
+source venv/bin/activate
+mkdir bin docs lib project  project/resources project/lib1 scripts tests tests/lib1
+
+#    /apidocs: Epydoc-generated API docs.
+#    /docs: All your documentation goes here.
+#    /lib: For any C-Language libraries.
+#    /helloworld: Your module packages are the core focus of your project. Do not hide these away. If, however, the module consists of only a single file, place it directly in the root directory of your project.
+#    /scripts: Any command-line related items.
+#    /tests: For your tests.
+
+touch project/__init__.py
+touch project/__main__.py
+touch project/app.py
+
+touch project/lib1/__init__.py
+touch project/lib1/lib1.py
+touch project/lib1/helpers.py
+
+touch tests/__init__.py
+touch tests/lib1/test_lib1.py
+touch tests/lib1/test_helpers.py
+touch lib/__init__.py
+touch CHANGELOG.rst
+touch CONTRIBUTING.rst
+
+pip install poetry
+poetry add pre-commit
+# Create the .pre-commit-config.yaml file
+poetry run pre-commit install
+poetry add toml
+nano pyproject.toml
+poetry add python-dotenv
+cat .env
+nano README.md
+
+poetry add -D mkdocs-material
+mkdocs new docs
+mkdos serve
+mkdocs gh-deploy
+poetry add pipreqs
+pipreqs
+

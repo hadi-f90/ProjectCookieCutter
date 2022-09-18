@@ -1,0 +1,19 @@
+#!/bin/bash
+echo "Adopted from https://www.the-analytics.club/python-project-structure-best-practices/"
+echo " Adopted from explanations on: https://www.goodcodebadcode.dev/posts/how-to-structure-your-python-projects/"
+python -m venv venv
+source venv/bin/activate
+
+touch CHANGELOG.rst
+touch CONTRIBUTING.rst
+nano README.md
+touch project.py
+pip install poetry
+poetry add pre-commit
+# Create the .pre-commit-config.yaml file
+poetry run pre-commit install
+poetry add toml
+nano pyproject.toml
+poetry add pipreqs
+pipreqs
+
